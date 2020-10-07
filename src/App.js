@@ -9,14 +9,26 @@ import {
   Link
 } from "react-router-dom";
 
+// {
+//   numberOfItems: 0,
+//   itemName: ""
+// }
+
 function App() {
+
+  const[cardItem, setCardItem] = useState(0);
+
+  const handleCardItem = () =>{
+    setCardItem(cardItem + 1);
+    console.log(cardItem)
+  }
 
   return (
 
     <Router>
-        <Route path="/" component={Nav} />
+        <Route path="/" component={() => <Nav cardItem={cardItem}/>}/>
         <Route exact path="/" component={Home} />
-        <Route path="/products" component={Products} />
+        <Route path='/products' component={() => <Products handleCardItem={handleCardItem} cardItem={cardItem} />}/>
     </Router>
 
   );

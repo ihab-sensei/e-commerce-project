@@ -2,7 +2,7 @@ import React, {useState, useEffect}  from 'react';
 import Product from '../product'
 import db from '../firebaseConfig';
 
-const Products = () => {
+const Products = ({handleCardItem, cardItem}) => {
 
     const [product, setProduct] = useState([]);
 
@@ -18,10 +18,15 @@ const Products = () => {
         fetchData()
       },[])
 
+      const substractItem = (id,stock) => {
+          db.collection("products").doc(id).update({
+            stock: stock - 1
+          })
+      }
     return product.map(product => {
         return (
             <div>
-                <Product img={product.img} name={product.name} description={product.description} likeNumber={product.likeNumber} stock={product.stock}/>
+                <Product substractItem={substractItem} id={product.id} img={product.img} cardItem={cardItem} handleCardItem={handleCardItem} name={product.name} description={product.description} likeNumber={product.likeNumber} stock={product.stock}/>
             </div>
         )
     })

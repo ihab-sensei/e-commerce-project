@@ -3,7 +3,7 @@ import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import { Link } from "react-router-dom";
 
-const Product = ({img, name, description, likeNumber, stock}) => {
+const Product = ({id, img, name, description, likeNumber, stock, handleCardItem, cardItem, substractItem}) => {
 
     const [liked, setLiked] = useState({
         like:likeNumber,
@@ -26,10 +26,10 @@ const Product = ({img, name, description, likeNumber, stock}) => {
         }) 
     }
 
-    const handeClickAdded = () => {
-        setCardItem(card + 1)
-        console.log(card)
-    }
+    // const handeClickAdded = () => {
+    //     setCardItem(card + 1)
+    //     console.log(card)
+    // }
 
 
     const createCard = () => {
@@ -40,12 +40,15 @@ const Product = ({img, name, description, likeNumber, stock}) => {
                 <Card.Body>
                     <h2>Name: {name}</h2>
                     <p>Desccription: {description}</p>
-                    <p>Stock: {stockState}</p>
+                    <p>Stock: {stockState - cardItem}</p>
                     <p>Likes: {liked.like}</p>
                     
                     <Button variant = {liked.isLiked ? "success" : "danger"}  onClick = {handeClickLiked}> Like </Button>
                     <input placeholder="number of pieces" type="number"></input>
-                    <button onClick = {handeClickAdded}>Add to Cart</button>
+                    <button onClick={() => {
+                        handleCardItem()
+                        substractItem(id,stock)
+                    }}>Add to Cart</button>
                 </Card.Body>
                 </Card>
         )
