@@ -12,6 +12,7 @@ const Product = ({id, img, name, description, likeNumber, stock, handleCardItem,
     const [stockState, setStockState] = useState(stock);
 
     const[card, setCardItem] = useState(0);
+    console.log(id);
     
     const handeClickLiked = () => {
         liked.isLiked ? 
@@ -35,8 +36,7 @@ const Product = ({id, img, name, description, likeNumber, stock, handleCardItem,
     const createCard = () => {
         return (
             <Card style={{ width: '18rem' }}>
-                 <Link to="/products/"><Card.Img variant="top" src={img} /></Link>
-                
+                <Link to={id}><Card.Img variant="top" src={img} /> </Link>
                 <Card.Body>
                     <h2>Name: {name}</h2>
                     <p>Desccription: {description}</p>
@@ -50,6 +50,7 @@ const Product = ({id, img, name, description, likeNumber, stock, handleCardItem,
                         substractItem(id,stock)
                     }}>Add to Cart</button>
                 </Card.Body>
+                
                 </Card>
         )
     }

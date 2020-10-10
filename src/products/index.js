@@ -10,7 +10,7 @@ const Products = ({handleCardItem, cardItem}) => {
         const productsRes = await db.collection('products').get();
         console.log("hello")
         const productsData = productsRes.docs.map(product => product.data())
-        console.log(productsData);
+       // console.log(productsData);
         setProduct(productsData);
       }
 
