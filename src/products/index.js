@@ -1,6 +1,6 @@
 import React, {useState, useEffect}  from 'react';
 import Product from '../product'
-import db from '../firebaseConfig';
+import { firestore as db}  from '../firebaseConfig';
 
 const Products = ({handleCardItem, cardItem}) => {
 

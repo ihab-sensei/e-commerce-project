@@ -3,6 +3,8 @@ import Products from './products';
 import Home from './home';
 import Nav from './nav';
 import Detail from './detail';
+import Login from './auth';
+import Signup from './signup';
 import {
   BrowserRouter as Router,
   Switch,
@@ -21,14 +23,16 @@ function App() {
   }
 
   return (
-
+    <>
     <Router>
-        <Route path="/" component={() => <Nav cardItem={cardItem}/>}/>
+        <Nav cardItem={cardItem}/>
         <Route exact path="/" component={Home} />
-        <Route path='/products' component={() => <Products handleCardItem={handleCardItem} cardItem={cardItem} />}/>
-        <Route path="/:id" children={<Detail/>}/>
+        <Route exact path='/products' component={() => <Products handleCardItem={handleCardItem} cardItem={cardItem} />}/>
+        <Route exact path="/:id" component={Detail}/>
+        <Route exact path="/login" component={Login} />
+        <Route exact path="/signup" component={Signup} />
     </Router>
-
+</>
   );
 }
 

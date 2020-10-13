@@ -6,7 +6,7 @@ import {
     useParams
   } from "react-router-dom";
 
-  import db from '../firebaseConfig';
+import { firestore as db}  from '../firebaseConfig';
 import Product from "../product";
 
 
@@ -15,7 +15,6 @@ const Detail = () => {
 
     const [product, setProduct] = useState([]);
 
-    
     let { id } = useParams();
     console.log(id)
 
@@ -23,7 +22,7 @@ const Detail = () => {
         const productsRes = await db.collection('products').get();
         console.log("hello")
         const productsData = productsRes.docs.map(product =>  product.data())
-        //console.log(productsData);
+        console.log(productsData);
         // setProduct(productsData.find(item => item.id == id));
         const singleData = productsData.find(item => (item.id ===id));
         setProduct(singleData);
